@@ -36,4 +36,33 @@ public class Regiao {
         }
     }
 
+    public String getRegiao(int x, int y) {
+        if ((x >= 0) && (x < 66.25)) {
+            if ((y >= 0) && (y < 59.875)) {
+                return "a1";
+            } else if ((y >= 59.875) && (y < 119.75)) {
+                return "b2";
+            } else if ((y >= 119.75) && (y < 179.625)) {
+                return "c3";
+            } else if ((y >= 179.625) && (y < 239.5)) {
+                return "d4";
+            } else if ((y >= 239.5) && (y < 299.375)) {
+                return "e5";
+            } else if ((y >= 299.375) && (y < 359.25)) {
+                return "f6";
+            } else if ((y >= 359.25) && (y < 419.125)) {
+                return "g7";
+            } else if ((y >= 419.125) && (y < 479)) {
+                return "h8";
+            }
+        } else if ((x >= 66.25) && (x < 132.5)) {
+
+        } else if ((x >= 132.5) && (x < 198.75)) {
+
+        } else if ((x >= 198.75) && (x < 265)) {
+
+        }
+        return null;
+    }
+
 }

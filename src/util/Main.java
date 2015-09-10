@@ -24,8 +24,8 @@ public class Main {
     public static void main(String[] args) {
         try {
             ElementoEstruturante ee = new ElementoEstruturante();
-            ee.carregarElementoEstruturante(new File("ee_1.ee"));
-            BufferedImage image1 = ImageIO.read(new File("erosao.jpg"));
+            ee.carregarElementoEstruturante(new File("ee.ee"));
+            BufferedImage image1 = ImageIO.read(new File("mancha.jpg"));
             int[][] matriz = new int[image1.getWidth()][image1.getHeight()];
             for (int y = 0; y < image1.getHeight(); y++) {
                 for (int x = 0; x < image1.getWidth(); x++) {
@@ -33,7 +33,7 @@ public class Main {
                 }
             }
             Imagem i = new Imagem(matriz);
-            Imagem imagem = OperacaoMorfologica.abertura(i, ee);
+            Imagem imagem = OperacaoMorfologica.erodir(OperacaoMorfologica.erodir(i, ee), ee);
             matriz = imagem.getImagem();
             BufferedImage image3 = new BufferedImage(image1.getWidth(), image1.getHeight(), image1.getType());
             for (int y = 0; y < image1.getHeight(); y++) {
