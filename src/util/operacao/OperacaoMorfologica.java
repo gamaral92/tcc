@@ -90,7 +90,7 @@ public class OperacaoMorfologica {
      * @param erodida Imagem erodida
      * @return Imagem
      */
-    private static Imagem subtracao(Imagem dilatada, Imagem erodida){
+    public static Imagem subtracao(Imagem dilatada, Imagem erodida){
         int[][] matrizDilatada = dilatada.getImagem();
         int[][] matrizErodida = erodida.getImagem();
         int[][] matrizResultante = new int[matrizDilatada.length][matrizDilatada[0].length];

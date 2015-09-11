@@ -16,8 +16,8 @@ import javax.imageio.ImageIO;
 public class Imagem {
 
     public static void main(String[] args) throws Exception {
-        BufferedImage image1 = ImageIO.read(new File("img1.png"));
-        BufferedImage image2 = ImageIO.read(new File("img2.png"));
+        BufferedImage image1 = ImageIO.read(new File("novapasta/test-7.jpg"));
+        BufferedImage image2 = ImageIO.read(new File("novapasta/test-6.jpg"));
         BufferedImage image3 = new BufferedImage(image1.getWidth(), image1.getHeight(), image1.getType());
         for (int x = 0; x < image1.getWidth(); x++) {
             for (int y = 0; y < image1.getHeight(); y++) {
@@ -32,7 +32,7 @@ public class Imagem {
                 image3.setRGB(x, y, diff);
             }
         }
-        ImageIO.write(image3, "png", new File("img.png"));
+        ImageIO.write(image3, "jpg", new File("img.jpg"));
 
     }
 

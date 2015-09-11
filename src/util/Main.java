@@ -25,7 +25,7 @@ public class Main {
         try {
             ElementoEstruturante ee = new ElementoEstruturante();
             ee.carregarElementoEstruturante(new File("ee.ee"));
-            BufferedImage image1 = ImageIO.read(new File("mancha.jpg"));
+            BufferedImage image1 = ImageIO.read(new File("img.jpg"));
             int[][] matriz = new int[image1.getWidth()][image1.getHeight()];
             for (int y = 0; y < image1.getHeight(); y++) {
                 for (int x = 0; x < image1.getWidth(); x++) {
@@ -33,12 +33,17 @@ public class Main {
                 }
             }
             Imagem i = new Imagem(matriz);
-            Imagem imagem = OperacaoMorfologica.erodir(OperacaoMorfologica.erodir(i, ee), ee);
+            Imagem imagem = OperacaoMorfologica.erodir(i, ee);
             matriz = imagem.getImagem();
             BufferedImage image3 = new BufferedImage(image1.getWidth(), image1.getHeight(), image1.getType());
             for (int y = 0; y < image1.getHeight(); y++) {
                 for (int x = 0; x < image1.getWidth(); x++) {
                     int bDiff = matriz[x][y];
+                    if(bDiff >= 20) {
+                        bDiff = 255;
+                    } else {
+                        bDiff = 0;
+                    }
                     int diff = (255 << 24) | (bDiff << 16) | (bDiff << 8) | bDiff;
                     image3.setRGB(x, y, diff);
                 }

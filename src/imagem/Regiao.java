@@ -31,10 +31,12 @@ public class Regiao {
             Set<String> set = new HashSet<>();
             for (int y = 0; y < image1.getHeight(); y++) {
                 for (int x = 0; x < image1.getWidth(); x++) {
-                    if(matriz[x][y] > 40){
-                        set.add(getRegiao(x, y).toUpperCase());
-                    }
+//                    if(matriz[x][y] > 40){
+//                        set.add(getRegiao(x, y).toUpperCase());
+//                    }
+                    System.out.print(matriz[x][y] + "\t");
                 }
+                System.out.println("");
             }
             for (Iterator<String> iterator = set.iterator(); iterator.hasNext();) {
                 String next = iterator.next();
