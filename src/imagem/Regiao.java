@@ -21,12 +21,14 @@ public class Regiao {
 
     public static void main(String[] args) {
         try {
-            BufferedImage image1 = ImageIO.read(new File("erosao.jpg"));
+            BufferedImage image1 = ImageIO.read(new File("tabnovo/test-0.jpg"));
             int[][] matriz = new int[image1.getWidth()][image1.getHeight()];
             for (int y = 0; y < image1.getHeight(); y++) {
                 for (int x = 0; x < image1.getWidth(); x++) {
                     matriz[x][y] = image1.getRGB(x, y) & 0xFF;
+                    System.out.print(matriz[x][y] + "\t");
                 }
+                System.out.println("");
             }
             Set<String> set = new HashSet<>();
             for (int y = 0; y < image1.getHeight(); y++) {
