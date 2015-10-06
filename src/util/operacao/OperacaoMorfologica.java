@@ -1,9 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package util.operacao;
 
 import util.elementos.Imagem;
@@ -12,7 +6,6 @@ import util.elementos.ElementoEstruturante;
 /**
  *
  * @author Gabriel Amaral
- * @author Jefferson Ribeiro
  */
 public class OperacaoMorfologica {
 
@@ -86,17 +79,17 @@ public class OperacaoMorfologica {
     
     /**
      * 
-     * @param dilatada Imagem dilatada
-     * @param erodida Imagem erodida
+     * @param imagemI Imagem imagem inicial
+     * @param imagemF Imagem imagem final
      * @return Imagem
      */
-    public static Imagem subtracao(Imagem dilatada, Imagem erodida){
-        int[][] matrizDilatada = dilatada.getImagem();
-        int[][] matrizErodida = erodida.getImagem();
-        int[][] matrizResultante = new int[matrizDilatada.length][matrizDilatada[0].length];
-        for (int i = 0; i < matrizDilatada.length; i++) {
-            for (int j = 0; j < matrizDilatada[i].length; j++) {
-                matrizResultante[i][j] = matrizDilatada[i][j] - matrizErodida[i][j];
+    public static Imagem subtracao(Imagem imagemI, Imagem imagemF){
+        int[][] matrizI = imagemI.getImagem();
+        int[][] matrizF = imagemF.getImagem();
+        int[][] matrizResultante = new int[matrizI.length][matrizI[0].length];
+        for (int i = 0; i < matrizI.length; i++) {
+            for (int j = 0; j < matrizI[i].length; j++) {
+                matrizResultante[i][j] = Math.abs(matrizI[i][j] - matrizF[i][j]);
             }
         }
         return new Imagem(matrizResultante);

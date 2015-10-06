@@ -16,8 +16,8 @@ import javax.imageio.ImageIO;
 public class Imagem {
 
     public static void main(String[] args) throws Exception {
-        BufferedImage image1 = ImageIO.read(new File("tabnovo/test-0.jpg"));
-        BufferedImage image2 = ImageIO.read(new File("tabnovo/test-1.jpg"));
+        BufferedImage image1 = ImageIO.read(new File("tabnovo/test-2.jpg"));
+        BufferedImage image2 = ImageIO.read(new File("tabnovo/test-3.jpg"));
         BufferedImage image3 = new BufferedImage(image1.getWidth(), image1.getHeight(), image1.getType());
         for (int x = 0; x < image1.getWidth(); x++) {
             for (int y = 0; y < image1.getHeight(); y++) {

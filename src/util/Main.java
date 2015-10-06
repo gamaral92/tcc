@@ -1,15 +1,8 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package util;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import util.elementos.ElementoEstruturante;
 import util.elementos.Imagem;
@@ -24,23 +17,37 @@ public class Main {
     public static void main(String[] args) {
         try {
             ElementoEstruturante ee = new ElementoEstruturante();
-            ee.carregarElementoEstruturante(new File("ee.ee"));
-            BufferedImage image1 = ImageIO.read(new File("img.jpg"));
-            int[][] matriz = new int[image1.getWidth()][image1.getHeight()];
-            for (int y = 0; y < image1.getHeight(); y++) {
-                for (int x = 0; x < image1.getWidth(); x++) {
-                    matriz[x][y] = image1.getRGB(x, y) & 0xFF;
+            ee.carregarElementoEstruturante(new File("EE15.ee"));
+
+            Imagem imageI = new Imagem(ImageIO.read(new File("folder/test-0.jpg")));
+            Imagem imageF = new Imagem(ImageIO.read(new File("folder/test-1.jpg")));
+
+            Imagem imagemsub = OperacaoMorfologica.subtracao(imageI, imageF);
+            Imagem imagem = OperacaoMorfologica.erodir(imagemsub, ee);
+            
+            BufferedImage image2 = new BufferedImage(imagemsub.getLinha(), imagemsub.getColuna(), imageI.getType());
+            
+            int[][] matriz = imagemsub.getImagem();
+            for (int y = 0; y < image2.getHeight(); y++) {
+                for (int x = 0; x < image2.getWidth(); x++) {
+                    int bDiff = matriz[x][y];
+//                    if (bDiff <= 20) {
+//                        bDiff = 0;
+//                    } else {
+//                        bDiff = 255;
+//                    }
+                    int diff = (255 << 24) | (bDiff << 16) | (bDiff << 8) | bDiff;
+                    image2.setRGB(x, y, diff);
                 }
             }
-            Imagem i = new Imagem(matriz);
-            Imagem imagem = OperacaoMorfologica.abertura(i, ee);
+            ImageIO.write(image2, "jpg", new File("sub.jpg"));
             matriz = imagem.getImagem();
-            BufferedImage image3 = new BufferedImage(image1.getWidth(), image1.getHeight(), image1.getType());
-            for (int y = 0; y < image1.getHeight(); y++) {
-                for (int x = 0; x < image1.getWidth(); x++) {
+            
+            BufferedImage image3 = new BufferedImage(imagem.getLinha(), imagem.getColuna(), imageI.getType());
+            for (int y = 0; y < image3.getHeight(); y++) {
+                for (int x = 0; x < image3.getWidth(); x++) {
                     int bDiff = matriz[x][y];
-                    // LIMIARIZAÇÃO
-                    if(bDiff <= 50) {
+                    if (bDiff <= 30) {
                         bDiff = 0;
                     } else {
                         bDiff = 255;
@@ -50,8 +57,10 @@ public class Main {
                 }
             }
             ImageIO.write(image3, "jpg", new File("erosao.jpg"));
+            //Imagem i = new Imagem(matriz);
+            //i.mostrarMatriz();
         } catch (IOException ex) {
-            Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex.getMessage());
         }
     }
 

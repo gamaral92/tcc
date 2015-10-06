@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package util.operacao;
 
 import util.elementos.Imagem;
@@ -10,7 +6,6 @@ import util.elementos.ElementoEstruturante;
 /**
  *
  * @author Gabriel Amaral
- * @author Jefferson Ribeiro
  */
 public class Erosao extends Morfologia {
 

@@ -1,28 +1,33 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package util.elementos;
 
-import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
+import java.awt.image.BufferedImage;
 
 /**
  *
  * @author Gabriel Amaral
- * @author Jefferson Ribeiro
  */
 public class Imagem {
 
-    private String magicNumber = "P2";
     private int coluna;
     private int linha;
     private int maximumGray;
     private int[][] imagem;
+    private int type;
 
     public Imagem() {
+    }
+
+    public Imagem(BufferedImage bufferedImage) {
+        this.type = bufferedImage.getType();
+        imagem = new int[bufferedImage.getWidth()][bufferedImage.getHeight()];
+        for (int y = 0; y < bufferedImage.getHeight(); y++) {
+            for (int x = 0; x < bufferedImage.getWidth(); x++) {
+                imagem[x][y] = bufferedImage.getRGB(x, y) & 0xFF;
+            }
+        }
+        this.linha = imagem.length;
+        this.coluna = imagem[0].length;
+        this.maximumGray = maiorValorNaMatriz(imagem);
     }
 
     public Imagem(int[][] imagem) {
@@ -32,8 +37,8 @@ public class Imagem {
         this.maximumGray = maiorValorNaMatriz(imagem);
     }
 
-    public String getMagicNumber() {
-        return magicNumber;
+    public int getType() {
+        return type;
     }
 
     public int getColuna() {
@@ -62,111 +67,6 @@ public class Imagem {
 
     public int getRegioesBrancas() {
         return contarRegioesBrancas();
-    }
-
-    /**
-     *
-     * @param file Imagem PGM
-     * @return True se carregou e False caso contrário
-     */
-    public boolean carregarImagem(File file) {
-        try {
-            BufferedReader br = new BufferedReader(new FileReader(file));
-            try {
-                if (br.ready()) {
-                    magicNumber = br.readLine();
-                }
-                while (br.ready()) {
-                    String linhaDoArquivo = br.readLine();
-                    if (linhaDoArquivo.startsWith("#")) {
-                        continue;
-                    }
-                    String[] elementos = linhaDoArquivo.split(" ");
-                    if (elementos.length == 2) {
-                        coluna = Integer.parseInt(elementos[0]);
-                        linha = Integer.parseInt(elementos[1]);
-
-                        imagem = new int[linha][coluna];
-                    } else if (elementos.length == 1) {
-                        maximumGray = Integer.parseInt(elementos[0]);
-                        break;
-                    }
-                }
-                int lin = 0, col = 0;
-                while (br.ready()) {
-                    String linhaDoArquivo = br.readLine();
-                    String[] elementos = linhaDoArquivo.split(" ");
-                    int numElementos = elementos.length;
-                    for (int i = 0; i < numElementos; i++) {
-                        try {
-                            imagem[lin][col++] = Integer.parseInt(elementos[i]);
-                        } catch (NumberFormatException exception) {
-                            if (elementos[i].equals("")) {
-                                col--;
-                            } else {
-                                System.out.println(exception.getMessage());
-                            }
-                        }
-                        if (col == coluna) {
-                            lin++;
-                            col = 0;
-                        }
-                    }
-
-                }
-                br.close();
-            } catch (IOException ex) {
-                System.out.println("Impossivel ler arquivo!");
-                return false;
-            }
-        } catch (FileNotFoundException ex) {
-            System.out.println("Arquivo não encontrado!");
-            return false;
-        }
-        return true;
-    }
-
-    /**
-     *
-     * @param nomeArquivo Nome da nova Imagem PGM
-     * @param comentario Comentário dentro da imagem (texto)
-     */
-    public boolean criaImagem(String nomeArquivo, String comentario) {
-        File file = new File("./images/" + nomeArquivo + ".pgm");
-        if (!file.exists()) {
-            try {
-                file.createNewFile();
-                try (BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(file))) {
-                    bufferedWriter.write(magicNumber);
-                    bufferedWriter.newLine();
-
-                    bufferedWriter.write("# " + comentario);
-                    bufferedWriter.newLine();
-
-                    bufferedWriter.write(imagem[0].length + " " + imagem.length);
-                    bufferedWriter.newLine();
-
-                    bufferedWriter.write(maximumGray + "");
-                    bufferedWriter.newLine();
-
-                    for (int i = 0; i < imagem.length; i++) {
-                        for (int j = 0; j < imagem[i].length; j++) {
-                            bufferedWriter.write(imagem[i][j] + " ");
-                        }
-                        bufferedWriter.newLine();
-                    }
-
-                    bufferedWriter.flush();
-                }
-            } catch (IOException ex) {
-                System.out.println("Impossível escrever no arquivo!");
-                return false;
-            }
-        } else {
-            System.out.println("Arquivo já existe!");
-            return false;
-        }
-        return true;
     }
 
     private int maiorValorNaMatriz(int[][] matriz) {
