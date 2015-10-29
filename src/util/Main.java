@@ -1,6 +1,5 @@
 package util;
 
-import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -20,8 +19,8 @@ public class Main {
             ElementoEstruturante ee = new ElementoEstruturante();
             ee.carregarElementoEstruturante(new File("EE15.ee"));
 
-            Imagem imageI = new Imagem(ImageIO.read(new File("img/test-1.jpg")));
-            Imagem imageF = new Imagem(ImageIO.read(new File("img/test-2.jpg")));
+            Imagem imageI = new Imagem(ImageIO.read(new File("img/d1_b6/test-2.jpg")));
+            Imagem imageF = new Imagem(ImageIO.read(new File("img/d1_b6/test-1.jpg")));
 
             Imagem imagemsub = OperacaoMorfologica.subtracao(imageI, imageF);
             Imagem imagem = OperacaoMorfologica.erodir(imagemsub, ee);
@@ -60,15 +59,22 @@ public class Main {
                 }
             }
             ImageIO.write(image3, "jpg", new File("erosao.jpg"));
-            
-            for (int y = 0; y < matriz.length; y++) {
-                for (int x = 0; x < matriz[y].length; x++) {
-                    int bDiff = matriz[x][y];
-                    if (bDiff <= 30) {
-                        System.out.println(posicao(x, y));
+
+            StringBuilder builder = new StringBuilder();
+            for (int y = 6; y < 462; y++) {
+                for (int x = 45; x < 503; x++) {
+                    try {
+                        int bDiff = matriz[x][y];
+                        if (bDiff == 255) {
+                            builder.append(posicao(x, y));
+                            x += 56;
+                            y += 56;
+                        }
+                    } catch (ArrayIndexOutOfBoundsException e) {
                     }
                 }
             }
+            System.out.println(builder.toString());
             //Imagem i = new Imagem(matriz);
             //i.mostrarMatriz();
         } catch (IOException ex) {
