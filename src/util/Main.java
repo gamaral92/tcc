@@ -1,6 +1,5 @@
 package util;
 
-import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -22,8 +21,8 @@ public class Main {
             ElementoEstruturante ee = new ElementoEstruturante();
             ee.carregarElementoEstruturante(new File("EE15.ee"));
 
-            Imagem imageI = new Imagem(ImageIO.read(new File("img/test-1.jpg")));
-            Imagem imageF = new Imagem(ImageIO.read(new File("img/test-2.jpg")));
+            Imagem imageI = new Imagem(ImageIO.read(new File("img/b2_f7/test-1.jpg")));
+            Imagem imageF = new Imagem(ImageIO.read(new File("img/b2_f7/test-0.jpg")));
 
             Imagem imagemsub = OperacaoMorfologica.subtracao(imageI, imageF);
             Imagem imagem = OperacaoMorfologica.erodir(imagemsub, ee);
@@ -34,7 +33,7 @@ public class Main {
             for (int y = 0; y < image2.getHeight(); y++) {
                 for (int x = 0; x < image2.getWidth(); x++) {
                     int bDiff = matriz[x][y];
-                    if (bDiff <= 20) {
+                    if (bDiff <= 30) {
                         bDiff = 0;
                     } else {
                         bDiff = 255;
@@ -62,13 +61,16 @@ public class Main {
                 }
             }
             ImageIO.write(image3, "jpg", new File("erosao.jpg"));
-            
+
             Set<String> casa = new HashSet<>();
             for (int y = 0; y < matriz.length; y++) {
                 for (int x = 0; x < matriz[y].length; x++) {
-                    int bDiff = matriz[x][y];
-                    if (bDiff <= 30) {
-                        casa.add(posicao(x, y));
+                    try {
+                        int bDiff = matriz[x][y];
+                        if (bDiff > 30) {
+                            casa.add(posicao(x, y));
+                        }
+                    } catch (Exception e) {
                     }
                 }
             }
