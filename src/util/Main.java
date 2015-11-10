@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.HashSet;
+import java.util.Set;
 import javax.imageio.ImageIO;
 import util.elementos.ElementoEstruturante;
 import util.elementos.Imagem;
@@ -61,13 +63,17 @@ public class Main {
             }
             ImageIO.write(image3, "jpg", new File("erosao.jpg"));
             
+            Set<String> casa = new HashSet<>();
             for (int y = 0; y < matriz.length; y++) {
                 for (int x = 0; x < matriz[y].length; x++) {
                     int bDiff = matriz[x][y];
                     if (bDiff <= 30) {
-                        System.out.println(posicao(x, y));
+                        casa.add(posicao(x, y));
                     }
                 }
+            }
+            for (String c : casa) {
+                System.out.print(c);
             }
             //Imagem i = new Imagem(matriz);
             //i.mostrarMatriz();
@@ -80,147 +86,147 @@ public class Main {
         StringBuilder saida = new StringBuilder();
         if (y >= 6 && y < 62) {
             if (x >= 45 && x < 101) {
-                saida.append("a8");
+                saida.append("h1");
             } else if (x >= 101 && x < 157) {
-                saida.append("b8");
+                saida.append("g1");
             } else if (x >= 157 && x < 213) {
-                saida.append("c8");
+                saida.append("f1");
             } else if (x >= 213 && x < 269) {
-                saida.append("d8");
+                saida.append("e1");
             } else if (x >= 269 && x < 325) {
-                saida.append("e8");
+                saida.append("d1");
             } else if (x >= 325 && x < 385) {
-                saida.append("f8");
+                saida.append("c1");
             } else if (x >= 385 && x < 443) {
-                saida.append("g8");
+                saida.append("b1");
             } else if (x >= 443 && x < 503) {
-                saida.append("h8");
+                saida.append("a1");
             }
         } else if (y >= 62 && y < 118) {
             if (x >= 45 && x < 101) {
-                saida.append("a7");
+                saida.append("h2");
             } else if (x >= 101 && x < 157) {
-                saida.append("b7");
+                saida.append("g2");
             } else if (x >= 157 && x < 213) {
-                saida.append("c7");
+                saida.append("f2");
             } else if (x >= 213 && x < 269) {
-                saida.append("d7");
+                saida.append("e2");
             } else if (x >= 269 && x < 325) {
-                saida.append("e7");
+                saida.append("d2");
             } else if (x >= 325 && x < 385) {
-                saida.append("f7");
+                saida.append("c2");
             } else if (x >= 385 && x < 443) {
-                saida.append("g7");
+                saida.append("b2");
             } else if (x >= 443 && x < 500) {
-                saida.append("h7");
+                saida.append("a2");
             }
         } else if (y >= 118 && y < 176) {
             if (x >= 45 && x < 101) {
-                saida.append("a6");
+                saida.append("h3");
             } else if (x >= 101 && x < 157) {
-                saida.append("b6");
+                saida.append("g3");
             } else if (x >= 157 && x < 213) {
-                saida.append("c6");
+                saida.append("f3");
             } else if (x >= 213 && x < 269) {
-                saida.append("d6");
+                saida.append("e3");
             } else if (x >= 269 && x < 325) {
-                saida.append("e6");
+                saida.append("d3");
             } else if (x >= 325 && x < 385) {
-                saida.append("f6");
+                saida.append("c3");
             } else if (x >= 385 && x < 443) {
-                saida.append("g6");
+                saida.append("b3");
             } else if (x >= 443 && x < 500) {
-                saida.append("h6");
+                saida.append("a3");
             }
         } else if (y >= 176 && y < 234) {
             if (x >= 45 && x < 101) {
-                saida.append("a5");
+                saida.append("h4");
             } else if (x >= 101 && x < 157) {
-                saida.append("b5");
+                saida.append("g4");
             } else if (x >= 157 && x < 213) {
-                saida.append("c5");
+                saida.append("f4");
             } else if (x >= 213 && x < 269) {
-                saida.append("d5");
+                saida.append("e4");
             } else if (x >= 269 && x < 325) {
-                saida.append("e5");
+                saida.append("d4");
             } else if (x >= 325 && x < 385) {
-                saida.append("f5");
+                saida.append("c4");
             } else if (x >= 385 && x < 443) {
-                saida.append("g5");
+                saida.append("b4");
             } else if (x >= 443 && x < 498) {
-                saida.append("h5");
+                saida.append("a4");
             }
         } else if (y >= 234 && y < 292) {
             if (x >= 45 && x < 101) {
-                saida.append("a4");
+                saida.append("h5");
             } else if (x >= 101 && x < 157) {
-                saida.append("b4");
+                saida.append("g5");
             } else if (x >= 157 && x < 213) {
-                saida.append("c4");
+                saida.append("f5");
             } else if (x >= 213 && x < 269) {
-                saida.append("d4");
+                saida.append("e5");
             } else if (x >= 269 && x < 325) {
-                saida.append("e4");
+                saida.append("d5");
             } else if (x >= 325 && x < 385) {
-                saida.append("f4");
+                saida.append("c5");
             } else if (x >= 385 && x < 443) {
-                saida.append("g4");
+                saida.append("b5");
             } else if (x >= 443 && x < 497) {
-                saida.append("h4");
+                saida.append("a5");
             }
         } else if (y >= 292 && y < 348) {
             if (x >= 45 && x < 101) {
-                saida.append("a3");
+                saida.append("h6");
             } else if (x >= 101 && x < 157) {
-                saida.append("b3");
+                saida.append("g6");
             } else if (x >= 157 && x < 213) {
-                saida.append("c3");
+                saida.append("f6");
             } else if (x >= 213 && x < 269) {
-                saida.append("d3");
+                saida.append("e6");
             } else if (x >= 269 && x < 325) {
-                saida.append("e4");
+                saida.append("d6");
             } else if (x >= 325 && x < 385) {
-                saida.append("f3");
+                saida.append("c6");
             } else if (x >= 385 && x < 443) {
-                saida.append("g3");
+                saida.append("b6");
             } else if (x >= 443 && x < 496) {
-                saida.append("h3");
+                saida.append("a6");
             }
         } else if (y >= 348 && y < 406) {
             if (x >= 45 && x < 101) {
-                saida.append("a2");
+                saida.append("h7");
             } else if (x >= 101 && x < 157) {
-                saida.append("b2");
+                saida.append("g7");
             } else if (x >= 157 && x < 213) {
-                saida.append("c3");
+                saida.append("f7");
             } else if (x >= 213 && x < 269) {
-                saida.append("d4");
+                saida.append("e7");
             } else if (x >= 269 && x < 325) {
-                saida.append("e5");
+                saida.append("d7");
             } else if (x >= 325 && x < 385) {
-                saida.append("f2");
+                saida.append("c7");
             } else if (x >= 385 && x < 443) {
-                saida.append("g2");
+                saida.append("b7");
             } else if (x >= 443 && x < 497) {
-                saida.append("h2");
+                saida.append("a7");
             }
         } else if (y >= 406 && y < 462) {
             if (x >= 45 && x < 101) {
-                saida.append("a1");
+                saida.append("h8");
             } else if (x >= 101 && x < 157) {
-                saida.append("b1");
+                saida.append("g8");
             } else if (x >= 157 && x < 213) {
-                saida.append("c1");
+                saida.append("f8");
             } else if (x >= 213 && x < 269) {
-                saida.append("d1");
+                saida.append("e8");
             } else if (x >= 269 && x < 325) {
-                saida.append("e1");
+                saida.append("d8");
             } else if (x >= 325 && x < 385) {
-                saida.append("f1");
+                saida.append("c8");
             } else if (x >= 385 && x < 443) {
-                saida.append("g1");
+                saida.append("b8");
             } else if (x >= 443 && x < 496) {
-                saida.append("h1");
+                saida.append("a8");
             }
         }
         return saida.toString();
